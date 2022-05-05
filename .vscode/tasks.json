@@ -1,0 +1,35 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "xmake",
+            "args": [],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Build & Update",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "D:/software/openocd-0.10.0/scripts/interface/stlink-v2.cfg",
+                "-f",
+                "D:/software/openocd-0.10.0/scripts/target/stm32f1x.cfg",
+                "-c",
+                "program ./build/output.elf verify reset exit"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "dependsOn": "Build"
+        }
+    ]
+}
